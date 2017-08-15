@@ -1,0 +1,11 @@
+{
+  "name": "graphql-backend-meeting",
+  "version": "1.0.0",
+  "description": "GraphQL example for backend meeting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
