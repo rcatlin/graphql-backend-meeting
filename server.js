@@ -2,7 +2,9 @@ var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { graphql, buildSchema } = require('graphql');
 
-const r29ers = {
+var nextAvailableId = 5;
+
+var r29ers = {
 	0: {
 		id: 0,
 		name: 'Ryan Catlin',
@@ -27,6 +29,10 @@ var schema = buildSchema(`
 		fetchR29er(id: Int!): R29er
 		R29ers: [R29er]
 	}
+
+	type Mutation {
+		createR29er(name: String!, luckyNumber: Int!): R29er
+	}
 `);
 
 
@@ -39,7 +45,18 @@ var root = {
 	},
 	R29ers: () => {
 		return Object.values(r29ers);
-	}
+	},
+	createR29er: ({ name, luckyNumber }) => {
+		r29er = {
+			id: nextAvailableId,
+			name: name,
+			luckyNumber: luckyNumber,
+		};
+		r29ers[nextAvailableId] = r29er;
+		nextAvailableId += 1;
+
+		return r29er;
+	},
 };
 
 
